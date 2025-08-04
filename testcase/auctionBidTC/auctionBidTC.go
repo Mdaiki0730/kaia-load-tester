@@ -48,10 +48,10 @@ func Run() {
 
 	from := accGrp.GetAccountRoundRobin()
 
-	testRecordName := "AuctionBid" + " to " + endPoint
-
 	// Select a targetTxType randomly from the list.
 	targetTxTypeKey := TargetTxTypeList[rand.Int()%len(TargetTxTypeList)]
+
+	testRecordName := "AuctionBid with " + targetTxTypeKey + " to " + endPoint
 
 	start := boomer.Now()
 

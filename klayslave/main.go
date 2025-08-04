@@ -77,7 +77,7 @@ func main() {
 
 func RunAction(ctx *cli.Context) {
 	cfg := config.NewConfig(ctx)
-	accGrp := account.NewAccGroup(cfg.GetChainID(), cfg.GetGasPrice(), cfg.GetBaseFee(), cfg.InTheTcList("transferUnsignedTx"))
+	accGrp := account.NewAccGroup(cfg.GetChainID(), cfg.GetGasPrice(), cfg.GetBaseFee(), cfg.GetStrictNonceCheck(), cfg.InTheTcList("transferUnsignedTx"))
 	var nUserForGaslessRevertTx, nUserForGaslessApproveTx int = 0, 0
 	if cfg.InTheTcList("gaslessRevertTransactionTC") {
 		nUserForGaslessRevertTx = cfg.GetNUserForSigned() // same as nUserForSignedTx
@@ -130,7 +130,7 @@ func createTestAccGroupsAndPrepareContracts(cfg *config.Config, accGrp *account.
 
 	// 1. Import global reservoir Account and create local reservoir account
 	globalReservoirAccount := account.GetAccountFromKey(0, cfg.GetRichWalletPrivateKey())
-	localReservoirAccount := account.NewAccount(0)
+	localReservoirAccount := account.NewLocalReservoirAccount()
 
 	// 2. charge local reservoir
 	_ = globalReservoirAccount.GetNonce(cfg.GetGCli())
