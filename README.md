@@ -1,4 +1,4 @@
-# kaia-load-tester
+## kaia-load-tester
 kaia-load-tester is a load tester using boomer library and it is written in golang.
 
 It provides built-in test cases that run to the kaia node. It can spawn thousands of goroutines to run your test code concurrently.
